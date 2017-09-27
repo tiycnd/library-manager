@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  protected
+  private
 
   def authenticate
     authenticate_token || render_unauthorized
+
+    # Same as
+    # if !authenticate_token
+    #   render_unauthorized
+    # end
   end
 
   def authenticate_token
@@ -15,7 +20,7 @@ class ApplicationController < ActionController::API
 
   def render_unauthorized
     self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: {error: 'Bad credentials'}, status: 401
+    render json: {error: 'Bad credentials'}, status: :unauthorized
   end
 
   def current_user

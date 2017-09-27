@@ -7,4 +7,8 @@ json.books @books do |book|
     json.url author_url(author)
     json.name author.name
   end
+  json.review_count book.reviews.count
+  if book.average_review
+    json.average_review book.average_review
+  end
 end
