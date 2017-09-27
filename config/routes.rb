@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :books
-  resources :authors
+  scope path: "api" do
+    resources :books
+    resources :authors
+  end
 end
