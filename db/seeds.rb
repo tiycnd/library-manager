@@ -14,3 +14,5 @@ robin = Author.create(name: "Robin Burcell")
 book1 = Book.create(title: "A Column of Fire", authors: [ken])
 book2 = Book.create(title: "Enigma", authors: [catherine])
 book3 = Book.create(title: "The Romanov Ransom", authors: [clive, robin])
+
+user = User.create(email: "user@example.org", name: "Example User", password: "password")
