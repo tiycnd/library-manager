@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+  before_action :authenticate, only: [:create, :update]
+
   def index
     @authors = Author.all
   end
@@ -10,6 +12,12 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.create(author_params)
     render :show, status: :created
+  end
+
+  def update
+    @author = Author.find(params[:id])
+    @author.update!(author_params)
+    render :show
   end
 
   private
